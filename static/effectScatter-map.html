@@ -15,7 +15,9 @@
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 var app = {};
+data = null;
 option = null;
+/*
 var data = [
      {name: '海门', value: 9},
      {name: '鄂尔多斯', value: 12},
@@ -207,7 +209,8 @@ var data = [
      {name: '合肥', value: 229},
      {name: '武汉', value: 273},
      {name: '大庆', value: 279}
-];
+]; */
+$.getJSON('/jobs/developerCountByCity.json',function(result){data = result;})
 var geoCoordMap = {
     '海门':[121.15,31.89],
     '鄂尔多斯':[109.781327,39.608266],
