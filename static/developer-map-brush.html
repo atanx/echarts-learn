@@ -600,14 +600,16 @@ function(result) {
             }
         ]
     }
-});
+
+    if (option && typeof option === "object") {
+    myChart.setOption(option, true);
 
 
-myChart.on('brushselected', renderBrushed);
+    myChart.on('brushselected', renderBrushed);
 
-// myChart.setOption(option);
+    // myChart.setOption(option);
 
-setTimeout(function () {
+    setTimeout(function () {
     myChart.dispatchAction({
         type: 'brush',
         areas: [
@@ -618,10 +620,10 @@ setTimeout(function () {
             }
         ]
     });
-}, 0);
+    }, 0);
 
 
-function renderBrushed(params) {
+    function renderBrushed(params) {
     var mainSeries = params.batch[0].selected[0];
 
     var selectedItems = [];
@@ -646,7 +648,7 @@ function renderBrushed(params) {
         return a.value[2] - b.value[2];
     });
 
-    for (var i = 0; i < Math.min(selectedItems.length, maxBar); i++) {
+    for (var i = Math.max(0,selectedItems.length-maxBar); i <  selectedItems.length; i++) {
         categoryData.push(selectedItems[i].name);
         barData.push(selectedItems[i].value[2]);
     }
@@ -667,10 +669,12 @@ function renderBrushed(params) {
             data: barData
         }
     });
-};
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
+    };
+
 }
+});
+
+
        </script>
    </body>
 </html>
