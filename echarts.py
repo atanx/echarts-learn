@@ -13,8 +13,21 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-	return 'Hello World!'
+def home_page():
+	html = '''
+	<html>
+	<body>
+	<a href="static/developer-map.html">developer-map </a><br>
+	<a href="static/developer-map-brush.html">developer-map-brush </a><br>
+	<a href="static/lines-airline.html">lines-airline </a><br>
+	<a href="static/lines-airline-remote.html">lines-airline-remote </a><br>
+	<a href="static/lines-bus.html"> lines-bus</a><br>
+	<a href="static/pie-custom.html"> pie-custom</a><br>
+	</body>
+	</html>
+	'''
+	return html
+
 
 @app.route('/json')
 def gen_json():
